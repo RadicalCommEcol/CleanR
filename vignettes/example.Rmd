@@ -1,0 +1,127 @@
+---
+title: "Cleaning in action"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Cleaning in action}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(cleanR)
+#help_template()
+```
+Turn on the music and let's clean some dirty data
+Note: Use coma chameleon app if you want to edit csv without opening excel and risking cell unformatting.
+
+```{r}
+dirty_data <- read.csv("../inst/extdata/dirty_data.csv", sep = ";")
+example <- read.csv("../inst/extdata/template.csv", sep = ";")  
+species_tesaurus <- read.csv("../inst/extdata/species_tesaurus.csv", sep = ";")
+```
+
+First, check variable names
+
+```{r}
+#create template to check agaisnt
+check <- define_template(example, species_tesaurus)
+
+compare_variables(check, dirty_data)
+#Reference doi is mispelled
+colnames(dirty_data)[which(colnames(dirty_data) == "Reference..doi.")] <- "Reference.doi"
+#add missing variables
+dirty_data <- add_missing_variables(check, dirty_data)
+
+#drop_variables(check, dirty_data) I am not droping variables yet, as I'll need those.
+```
+
+Second, fix variables.
+
+```{r}
+#I never remember georeference functions
+help_geo()
+dirty_data$Latitude <- parzer::parse_lat(as.character(dirty_data$UTM.N))
+dirty_data$Longitude <- parzer::parse_lat(as.character(dirty_data$UTM.S))
+
+alternative <- mgrs::mgrs_to_latlng(as.character(dirty_data$MGRS))
+#From here you can extract lat and long easely
+
+#Geolocate TBA
+
+#and I also forget about Date manipulation
+help_date()
+#but if the date format is easy I have a wrapper
+
+temp <- extract_date(dirty_data$Date, format = "%d-%m-%Y")
+dirty_data$Year <- temp$year
+dirty_data$Month <- temp$month
+dirty_data$Day <- temp$day
+
+#Species names
+help_species() #tipical useful functions
+
+temp <- extract_pieces(dirty_data$Species, species = TRUE) #this may fail with more dirty data
+#in this case strsplit() may also work.
+temp2 <- extract_pieces(dirty_data$Genus, pattern_ = " (", i = 2, f = 1) 
+dirty_data$Subgenus <- temp2$piece2
+dirty_data$Genus <- temp$piece2
+dirty_data$Species <- temp$piece1
+
+#now we can drop variables
+clean_data <- drop_variables(check, dirty_data)
+#Add uid
+clean_data <- add_uid(newdat = clean_data, "test")
+
+head(clean_data)
+```
+
+Second check species names
+
+```{r}
+to_fix <- check_sp(check, clean_data$Genus, clean_data$Species)
+to_fix
+
+#here we can also create a more complex table of synonims, or common mistakes.
+
+#ALternativelly, we can use taxize
+#library(traitbaser)
+#library(taxize)
+#clean <- traitbaser::cleanSpecies(to_check[which(is.na(checked))]) 
+#We should import this funtion into CleanR.
+#temp <- taxize::synonyms(XXXXXXX, db = "itis")
+#synonym_ids <- grep(pattern = "acc_name", temp)
+#accepted_names_temp <- unlist(lapply(temp[synonym_ids], "[", "acc_name"), 
+ #                             use.names = FALSE, recursive = FALSE)
+#accepted_names <- unlist(lapply(accepted_names_temp, `[[`, 1))
+#synonym_names <- rep(NA, length(to_check[which(is.na(checked$checked))]))
+#synonym_names[synonym_ids] <- accepted_names
+#synonims <- data.frame(to_check = to_check[which(is.na(checked$checked))], synonym_names)
+
+#more code from other projects
+# temp <- taxize::synonyms(to_check[which(is.na(checked$checked))], db = "itis")
+# synonym_ids <- grep(pattern = "acc_name", temp)
+# accepted_names_temp <- unlist(lapply(temp[synonym_ids], "[", "acc_name"),
+#                               use.names = FALSE, recursive = FALSE)
+# accepted_names <- unlist(lapply(accepted_names_temp, `[[`, 1))
+# synonym_names <- rep(NA, length(to_check[which(is.na(checked$checked))]))
+# synonym_names[synonym_ids] <- accepted_names
+# synonims <- data.frame(to_check = to_check[which(is.na(checked$checked))], synonym_names)
+
+#Also 
+#install.packages('traitdataform')
+#get_gbif_taxonomy()
+
+```
+
+
+
+

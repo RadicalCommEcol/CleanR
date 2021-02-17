@@ -1,0 +1,10 @@
+Genus;Species;Country;Province;Locality;UTM N;UTM S;MGRS;Coordinate.precision;Date;Collector;Determined.by;Female;Male;Worker;Not.specified;Reference.(doi);Flowers.visited;Local_ID;Authors.to.give.credit;Any.other.additional.data;Notes.and.queries
+Ceratina;Ceratina cucurbitina;Spain;Barcelona;Barcelona;41°23'19.6'';2°9'32.4'';31TDF31222815;GPS;21-5-19;I. Bartomeus;I. Bartomeus;1;1;0;0;NA;NA;NA;I. Bartomeus;NA;NA
+Ceratina;Ceratina cyanea;Spain;Barcelona;Barcelona;41°23'19.6'';2°9'32.4'';31TDF31222816;GPS;22-5-19;I. Bartomeus;I. Bartomeus;2;0;0;0;NA;NA;NA;I. Bartomeus;NA;NA
+Andrea;Andrea flavipes;Spain;Barcelona;Barcelona;41°23'19.6'';2°9'32.4'';31TDF31222817;GPS;23-5-19;I. Bartomeus;I. Bartomeus;2;1;0;0;NA;NA;NA;I. Bartomeus;NA;NA
+Dufourea;Dufourea halictula;Spain;Barcelona;Barcelona;41°23'19.6'';2°9'32.4'';31TDF31222818;GPS;24-5-19;I. Bartomeus;I. Bartomeus;1;0;0;0;NA;NA;NA;I. Bartomeus;NA;NA
+Lasioglosum;Lasioglosum fulvicorne;Spain;Barcelona;Barcelona;41°23'19.6'';2°9'32.4'';31TDF31222819;GPS;25-5-19;I. Bartomeus;I. Bartomeus;1;0;0;0;NA;NA;NA;I. Bartomeus;NA;NA
+Anthidium;Anthidium septemdentatum;Spain;Barcelona;Barcelona;41°23'19.6'';2°9'32.4'';31TDF31222820;GPS;26-5-19;I. Bartomeus;I. Bartomeus;0;1;0;0;NA;NA;NA;I. Bartomeus;NA;NA
+Nomada;Nomada guttulata;Spain;Barcelona;Barcelona;41°23'19.6'';2°9'32.4'';31TDF31222821;GPS;27-5-19;I. Bartomeus;I. Bartomeus;1;0;0;0;NA;NA;NA;I. Bartomeus;NA;NA
+Chelostoma;Chelostoma campanularum;Spain;Barcelona;Barcelona;41°23'19.6'';2°9'32.4'';31TDF31222822;GPS;28-5-19;I. Bartomeus;I. Bartomeus;1;0;0;0;NA;NA;NA;I. Bartomeus;NA;NA
+Bombus (Bombus);Bombus terrestris;Spain;Barcelona;Barcelona;41°23'19.6'';2°9'32.4'';31TDF31222823;GPS;29-5-19;I. Bartomeus;I. Bartomeus;0;0;1;0;NA;Halimium halimifolium;NA;I. Bartomeus;NA;NA
