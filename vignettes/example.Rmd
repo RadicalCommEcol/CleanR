@@ -84,11 +84,18 @@ clean_data <- add_uid(newdat = clean_data, "test")
 head(clean_data)
 ```
 
-Second check species names
+third, check species names
 
 ```{r}
+clean_data$Gen_sp <- paste(trimws(clean_data$Genus),
+                  trimws(clean_data$Species))
 to_fix <- check_sp(check, clean_data$Genus, clean_data$Species)
 to_fix
+
+clean_data <- merge(clean_data, to_fix, by.x = "Gen_sp", by.y = "mismatches", all.x = TRUE)
+
+head(clean_data)
+#we can now create a final Gen_sp column and rename the original.
 
 #here we can also create a more complex table of synonims, or common mistakes.
 
