@@ -34,4 +34,6 @@ compare_variables <- function(template, newdat, threshold = 1.5){
   print("Numeric variables out of range")
   print(merged[which(merged$newmin_ < merged$min_ | merged$newmax_ > merged$max_),
                c(1,3:4,6:7)])
+  #categorical variables with wrong categories
+  #TO BE DONE using template$categorical
 }

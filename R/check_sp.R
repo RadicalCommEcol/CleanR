@@ -14,8 +14,8 @@ check_sp <- function(template, Genus, Species, k = 2){ #if Gen_sp, we can add an
                   trimws(Species))
   species_tesaurus$Gen_sp <- paste(trimws(species_tesaurus$Genus),
                                    trimws(species_tesaurus$Species))
-  matching <- Gen_sp[which(clean_data$Gen_sp %in% species_tesaurus$Gen_sp)]
-  unmatching <- Gen_sp[which(!clean_data$Gen_sp %in% species_tesaurus$Gen_sp)]
+  matching <- Gen_sp[which(Gen_sp %in% species_tesaurus$Gen_sp)]
+  unmatching <- Gen_sp[which(!Gen_sp %in% species_tesaurus$Gen_sp)]
   mismatches <- unique(unmatching) #speed up the process
   print(paste("the following species do not match:", mismatches))
   fixed <- c()

@@ -12,14 +12,19 @@ define_template <- function(example, species_tesaurus){
   example[i] <- lapply(example[i], as.character)
   variables <- colnames(example)
   classes <- sapply(example, class)
-  i <- sapply(example, is.numeric)
+  j <- sapply(example, is.numeric)
   min_ <- rep(NA, ncol(example))
   max_ <- rep(NA, ncol(example))
-  min_[i] <- lapply(example[i], min)
-  max_[i] <- lapply(example[i], max)
+  min_[j] <- lapply(example[j], min)
+  max_[j] <- lapply(example[j], max)
   dat <- data.frame(variables, classes, min_ = unlist(min_), max_ = unlist(max_), stringsAsFactors = FALSE)
   #maybe add allowed factors? how?
+  cats <- list()
+  for(k in 1:length(example[i])){
+    temp <- unique(example[i][k])
+    cats <- append(cats, temp)
+  }
   species_tesaurus <- unique(as.character(species_tesaurus))
-  template <- list(variables = variables, dat = dat, tesaurus = species_tesaurus)
+  template <- list(variables = variables, dat = dat, categorical = cats, tesaurus = species_tesaurus)
   template
 }

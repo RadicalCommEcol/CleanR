@@ -13,8 +13,8 @@ geocode <- function(places){
   for(i in 1:length(places)){
     temp <- geocode_OSM(places [i])
     if(!is.null(temp)){
-      long[i] <- temp$coords[2]
-      lat[i] <- temp$coords[1]
+      long[i] <- temp$coords[1]
+      lat[i] <- temp$coords[2]
     }
     print(paste(i, "palces done out of",  length(places)))
   }

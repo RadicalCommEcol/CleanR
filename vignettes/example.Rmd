@@ -24,9 +24,9 @@ Turn on the music and let's clean some dirty data
 Note: Use coma chameleon app if you want to edit csv without opening excel and risking cell unformatting.
 
 ```{r}
-dirty_data <- read.csv("../inst/extdata/dirty_data.csv", sep = ";")
-example <- read.csv("../inst/extdata/template.csv", sep = ";")  
-species_tesaurus <- read.csv("../inst/extdata/species_tesaurus.csv", sep = ";")
+dirty_data <- read.csv("./inst/extdata/dirty_data.csv", sep = ";")
+example <- read.csv("./inst/extdata/template.csv", sep = ";")  
+species_tesaurus <- read.csv("./inst/extdata/species_tesaurus.csv", sep = ";")
 ```
 
 First, check variable names
@@ -36,7 +36,7 @@ First, check variable names
 check <- define_template(example, species_tesaurus)
 
 compare_variables(check, dirty_data)
-#Reference doi is mispelled
+#Reference doi is misspelled
 colnames(dirty_data)[which(colnames(dirty_data) == "Reference..doi.")] <- "Reference.doi"
 #add missing variables
 dirty_data <- add_missing_variables(check, dirty_data)
@@ -53,9 +53,11 @@ dirty_data$Latitude <- parzer::parse_lat(as.character(dirty_data$UTM.N))
 dirty_data$Longitude <- parzer::parse_lat(as.character(dirty_data$UTM.S))
 
 alternative <- mgrs::mgrs_to_latlng(as.character(dirty_data$MGRS))
-#From here you can extract lat and long easely
+#From here you can extract lat and long easily
 
 #Geolocate TBA
+latlong <- geocode(unique(as.character(dirty_data$Locality)))
+latlong ; unique(paste(dirty_data$Latitude, dirty_data$Longitude)) #not bad.
 
 #and I also forget about Date manipulation
 help_date()
@@ -89,7 +91,7 @@ third, check species names
 ```{r}
 clean_data$Gen_sp <- paste(trimws(clean_data$Genus),
                   trimws(clean_data$Species))
-to_fix <- check_sp(check, clean_data$Genus, clean_data$Species)
+to_fix <- check_sp(check, clean_data$Genus, clean_data$Species, k = 2)
 to_fix
 
 clean_data <- merge(clean_data, to_fix, by.x = "Gen_sp", by.y = "mismatches", all.x = TRUE)
@@ -97,9 +99,9 @@ clean_data <- merge(clean_data, to_fix, by.x = "Gen_sp", by.y = "mismatches", al
 head(clean_data)
 #we can now create a final Gen_sp column and rename the original.
 
-#here we can also create a more complex table of synonims, or common mistakes.
+#here we can also create a more complex table of synonyms, or common mistakes.
 
-#ALternativelly, we can use taxize
+#Alternativelly, we can use taxize
 #library(traitbaser)
 #library(taxize)
 #clean <- traitbaser::cleanSpecies(to_check[which(is.na(checked))]) 
