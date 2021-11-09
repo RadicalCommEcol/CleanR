@@ -9,9 +9,6 @@ add_uid(newdat, name = "id")
 \arguments{
 \item{name}{}
 }
-\value{
-
-}
 \description{
 add_uid
 }

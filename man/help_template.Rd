@@ -6,9 +6,6 @@
 \usage{
 help_template()
 }
-\value{
-
-}
 \description{
 help_template
 }

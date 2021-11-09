@@ -24,9 +24,14 @@ Turn on the music and let's clean some dirty data
 Note: Use coma chameleon app if you want to edit csv without opening excel and risking cell unformatting.
 
 ```{r}
+#dirty_data <- read.csv("./inst/extdata/dirty_data.csv", sep = ";")
+#example <- read.csv("./inst/extdata/template.csv", sep = ";")  
+#species_tesaurus <- read.csv("./inst/extdata/species_tesaurus.csv", sep = ";")
+
 dirty_data <- read.csv("./inst/extdata/dirty_data.csv", sep = ";")
 example <- read.csv("./inst/extdata/template.csv", sep = ";")  
 species_tesaurus <- read.csv("./inst/extdata/species_tesaurus.csv", sep = ";")
+
 ```
 
 First, check variable names
@@ -35,7 +40,13 @@ First, check variable names
 #create template to check agaisnt
 check <- define_template(example, species_tesaurus)
 
-compare_variables(check, dirty_data)
+#use factors only for those variables you want to compare categories.
+(comp <- compare_variables(check, dirty_data))
+#fix locality
+#comp$Locality
+dirty_data$Locality <- as.character(dirty_data$Locality) #this is not elegant, fix.
+dirty_data$Locality <- ifelse(dirty_data$Locality == as.character(comp$Locality$to_fix), as.character(comp$Locality$fixed), dirty_data$Locality)
+
 #Reference doi is misspelled
 colnames(dirty_data)[which(colnames(dirty_data) == "Reference..doi.")] <- "Reference.doi"
 #add missing variables

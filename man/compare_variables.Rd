@@ -4,13 +4,13 @@
 \alias{compare_variables}
 \title{compare_variables}
 \usage{
-compare_variables(template, newdat, threshold = 1.5)
+compare_variables(template = check, newdat = dirty_data,
+  threshold = 1.5, k = 2)
 }
 \arguments{
-\item{newdat}{}
-}
-\value{
+\item{threshold}{: theshold to detect outlyers. Not implemented}
 
+\item{k}{: Fuzzy matching precision for categories}
 }
 \description{
 compare_variables

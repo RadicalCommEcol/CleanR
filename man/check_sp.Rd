@@ -9,9 +9,6 @@ check_sp(template, Genus, Species, k = 2)
 \arguments{
 \item{k}{}
 }
-\value{
-
-}
 \description{
 check_sp
 }

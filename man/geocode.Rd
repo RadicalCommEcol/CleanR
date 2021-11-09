@@ -9,9 +9,6 @@ geocode(places)
 \arguments{
 \item{places}{}
 }
-\value{
-
-}
 \description{
 geocode
 }

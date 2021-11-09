@@ -6,9 +6,6 @@
 \usage{
 help_geo()
 }
-\value{
-
-}
 \description{
 help_geo
 }
