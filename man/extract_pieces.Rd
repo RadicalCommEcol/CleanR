@@ -4,11 +4,22 @@
 \alias{extract_pieces}
 \title{extract_pieces}
 \usage{
-extract_pieces(to_split, pattern_ = "_", i = 1, f = 0, k = 1,
-  subgenus = FALSE, species = FALSE, single = TRUE)
+extract_pieces(
+  to_split,
+  pattern_ = "_",
+  i = 1,
+  f = 0,
+  k = 1,
+  subgenus = FALSE,
+  species = FALSE,
+  single = TRUE
+)
 }
 \arguments{
 \item{single}{}
+}
+\value{
+
 }
 \description{
 extract_pieces

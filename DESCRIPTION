@@ -1,6 +1,6 @@
 Package: cleanR
 Title: Clean all the data! (I wish)
-Version: 0.0.0.9000
+Version: 0.1
 Authors@R: 
     person(given = "Ignasi",
            family = "Bartomeus",
@@ -19,4 +19,4 @@ Suggests:
     knitr,
     rmarkdown,
     mgrs
-VignetteBuilder: knitr
+VignetteBuilder: rmarkdown

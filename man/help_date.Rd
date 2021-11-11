@@ -9,6 +9,9 @@ help_date(x)
 \arguments{
 \item{x}{}
 }
+\value{
+
+}
 \description{
 help_date
 }

@@ -7,7 +7,10 @@
 check_sp(template, Genus, Species, k = 2)
 }
 \arguments{
-\item{k}{}
+\item{k:}{number of changes allowed by the fuzzy matching function.}
+}
+\value{
+
 }
 \description{
 check_sp

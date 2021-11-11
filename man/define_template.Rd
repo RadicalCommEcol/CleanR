@@ -7,9 +7,9 @@
 define_template(example, species_tesaurus)
 }
 \arguments{
-\item{species_tesaurus}{a speices checklist (vector)}
+\item{species_tesaurus}{a speices checklist (data frame with columns Genus and Species)}
 
-\item{example:}{a model data.frame}
+\item{example:}{a model data.frame with all possible categories and min and max numeric values allowed.}
 }
 \value{
 a list

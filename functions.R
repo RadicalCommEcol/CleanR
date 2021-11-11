@@ -3,7 +3,21 @@
 library(parzer)
 library(mgrs)
 
-#functions
+# dev----
+library(devtools)
+library(tidyverse)
+
+#use_r("function")
+use_mit_license("I. Bartomeus")
+#use_testthat()
+use_vignette(name = "example")
+use_build_ignore(files = "temp.R")
+use_build_ignore(files = "functions.R")
+#load_all()
+check()
+
+
+#functions----
 
 
 #define template----

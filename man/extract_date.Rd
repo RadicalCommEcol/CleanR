@@ -9,6 +9,9 @@ extract_date(date_var, format_ = "\%m/\%d/\%Y", offset = 1900)
 \arguments{
 \item{offset}{}
 }
+\value{
+
+}
 \description{
 extract_date
 }
