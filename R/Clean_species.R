@@ -9,10 +9,11 @@
 #' @return data.frame of original and corrected species.
 #'
 #' @examples
-#' #not run
+#' \dontrun{
 #' species <- c("Osmia rufa", "Osmia bicornis", "Osmia ruffa",
 #'            "Osmia wikifluqie", "watermelon pie", "Osmia sp.")
 #' clean_species(species)
+#' }
 #' @export
 clean_species <- function(species, verbose = TRUE, db = "itis"){
   species <- as.character(species)

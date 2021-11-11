@@ -19,4 +19,4 @@ Suggests:
     knitr,
     rmarkdown,
     mgrs
-VignetteBuilder: rmarkdown
+VignetteBuilder: knitr

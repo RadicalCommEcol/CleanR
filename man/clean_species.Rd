@@ -16,8 +16,9 @@ data.frame of original and corrected species.
 This correct misspellings, synonyms and flags not recognizes species.
 }
 \examples{
-#not run
+\dontrun{
 species <- c("Osmia rufa", "Osmia bicornis", "Osmia ruffa",
            "Osmia wikifluqie", "watermelon pie", "Osmia sp.")
 clean_species(species)
+}
 }

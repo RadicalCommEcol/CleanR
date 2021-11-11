@@ -4,7 +4,7 @@ output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Cleaning in action}
   %\VignetteEncoding{UTF-8}
-  %\VignetteEngine{rmarkdown::render}
+  %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
   chunk_output_type: console
 ---
@@ -23,13 +23,9 @@ Turn on the music and let's clean some dirty data.
 
 ```{r setup}
 library(cleanR)
-#dirty_data <- read.csv("./inst/extdata/dirty_data.csv", sep = ";")
-#example <- read.csv("./inst/extdata/template.csv", sep = ";")  
-#species_tesaurus <- read.csv("./inst/extdata/species_tesaurus.csv", sep = ";")
-
-dirty_data <- read.csv("inst/extdata/dirty_data.csv", stringsAsFactors = FALSE)
-example <- read.csv("inst/extdata/template.csv")  
-species_tesaurus <- read.csv("inst/extdata/species_tesaurus.csv", sep = ";")
+dirty_data <- read.csv("../inst/extdata/dirty_data.csv", stringsAsFactors = FALSE)
+example <- read.csv("../inst/extdata/template.csv")  
+species_tesaurus <- read.csv("../inst/extdata/species_tesaurus.csv", sep = ";")
 ```
 
 I created a few `help_` functions to provide tips and refresh my mind on what options are available. Here we first start by checking variable names (colnames) match with what we expect.
@@ -166,7 +162,7 @@ For more complex scinetific name cleaning (e.g. detecting synonyms), you can use
 
 
 ```{r}
-library(taxize)
+#library(taxize)
 species <- c("Osmia rufa", "Osmia bicornis", "Osmia ruffa",
             "Osmia wikifluqie", "watermelon pie", "Osmia sp.")
 #clean_species(species) #This is slow

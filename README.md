@@ -26,7 +26,7 @@ A guided example in https://github.com/RadicalCommEcol/CleanR/blob/main/vignette
 
 Package can be installed at 
 
-`devtools::install_github("RadicalCommEcol/CleanR")`
+`devtools::install_github("RadicalCommEcol/CleanR", build_vignettes = TRUE)`
 
 
 
