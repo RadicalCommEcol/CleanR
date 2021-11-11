@@ -22,7 +22,7 @@ As I need to unify and compile large datasets coming from different people, I wa
 
 I coded a bunch of functions to make this process efficient. Those are in most cases wrappers to existing functions that help my workflows. I use base R (no tydiverse here) because this is what I am more familiar with. I know there are better functions out there to work with e.g. dates, but I would need to re-learn those. 
 
-A guided example in https://github.com/RadicalCommEcol/CleanR/blob/main/vignettes/example.Rmd (the help files are not developed yet, as this is work in progress)
+A guided example in https://htmlpreview.github.io/?https://github.com/RadicalCommEcol/CleanR/blob/main/doc/example.html (the help files are not developed yet, as this is work in progress)
 
 Package can be installed at 
 
