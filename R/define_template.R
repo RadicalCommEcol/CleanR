@@ -1,7 +1,7 @@
 #' define_template
 #'
-#' @param example: a model data.frame
-#' @param species_tesaurus a speices checklist (vector)
+#' @param example: a model data.frame with all possible categories and min and max numeric values allowed.
+#' @param species_tesaurus a speices checklist (data frame with columns Genus and Species)
 #'
 #' @return a list
 #' @export

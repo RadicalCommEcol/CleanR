@@ -37,7 +37,7 @@ clean_species <- function(species, verbose = TRUE, db = "itis"){
   #clean non accepted species
   species4 <- unique(dat$synonym_names)
   species4 <- species4[!is.na(species4)]
-  out2 <- tax_name(species4, get = "species", db = "both", pref = "itis", verbose = verbose)
+  out2 <- tax_name(as.character(species4), get = "species", db = "both", pref = "itis", verbose = verbose)
   out2_u <- unique(out2$species)
   final_names <- species4
   final_names[which(!species4 %in% out2_u)] <- NA

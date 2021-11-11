@@ -3,7 +3,7 @@
 #' @param template
 #' @param Genus
 #' @param Species
-#' @param k
+#' @param k: number of changes allowed by the fuzzy matching function.
 #'
 #' @return
 #' @export
