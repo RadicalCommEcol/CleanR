@@ -24,7 +24,7 @@ define_template <- function(example, species_tesaurus){
     temp <- unique(example[i][k])
     cats <- append(cats, temp)
   }
-  species_tesaurus <- unique(as.character(species_tesaurus))
+  #species_tesaurus <- unique(as.character(species_tesaurus))
   template <- list(variables = variables, dat = dat, categorical = cats, tesaurus = species_tesaurus)
   template
 }

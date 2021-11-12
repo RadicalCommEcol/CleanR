@@ -9,7 +9,7 @@
 #' @export
 #'
 #' @examples
-compare_variables <- function(template = check, newdat = dirty_data, threshold = 1.5, k = 2){
+compare_variables <- function(template, newdat, threshold = 1.5, k = 2){
   i <- sapply(newdat, is.factor)
   newdat[i] <- lapply(newdat[i], as.character)
   missing <- template[["variables"]][which(!template[["variables"]] %in%

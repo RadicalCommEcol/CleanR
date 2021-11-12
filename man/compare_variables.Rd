@@ -4,12 +4,7 @@
 \alias{compare_variables}
 \title{compare_variables}
 \usage{
-compare_variables(
-  template = check,
-  newdat = dirty_data,
-  threshold = 1.5,
-  k = 2
-)
+compare_variables(template, newdat, threshold = 1.5, k = 2)
 }
 \arguments{
 \item{threshold}{: theshold to detect outlyers. Not implemented}

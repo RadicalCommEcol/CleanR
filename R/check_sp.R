@@ -12,6 +12,7 @@
 check_sp <- function(template, Genus, Species, k = 2){ #if Gen_sp, we can add an if.
   Gen_sp <- paste(trimws(Genus),
                   trimws(Species))
+  species_tesaurus <- template$tesaurus
   species_tesaurus$Gen_sp <- paste(trimws(species_tesaurus$Genus),
                                    trimws(species_tesaurus$Species))
   matching <- Gen_sp[which(Gen_sp %in% species_tesaurus$Gen_sp)]
