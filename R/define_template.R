@@ -20,9 +20,13 @@ define_template <- function(example, species_tesaurus){
   dat <- data.frame(variables, classes, min_ = unlist(min_), max_ = unlist(max_), stringsAsFactors = FALSE)
   #maybe add allowed factors? how?
   cats <- list()
-  for(k in 1:length(example[i])){
-    temp <- unique(example[i][k])
-    cats <- append(cats, temp)
+  if(any(i)){
+    for(k in 1:length(example[i])){
+      temp <- unique(example[i][k])
+      cats <- append(cats, temp)
+    }
+  } else {
+    cats <- NA
   }
   #species_tesaurus <- unique(as.character(species_tesaurus))
   template <- list(variables = variables, dat = dat, categorical = cats, tesaurus = species_tesaurus)

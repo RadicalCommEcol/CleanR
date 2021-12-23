@@ -43,7 +43,7 @@ dirty_data$Locality <- as.factor(dirty_data$Locality)
 (comp <- compare_variables(check, dirty_data))
 ```
 
-We observe that some variables do not match (e.g. UTM vs lat long, or Date vs Day, Month Year). We will look onto that later. In addition, some are simply mispelled (e.g. Reference..doi.). The `worker` column should be an integer, but it's a character and the males variable has values out of range. Finally, we need to fix some categories. All this process is quite manual because the ofensive values are context dependent. Let's do that.
+We observe that some variables do not match (e.g. UTM vs lat long, or Date vs Day, Month Year). We will look onto that later. In addition, some are simply misspelled (e.g. Reference..doi.). The `worker` column should be an integer, but it's a character and the `male` variable has values out of range. Finally, we need to fix some categories. All this process is quite manual because the offensive values are context dependent. Let's do that.
 
 ```{r}
 #Reference doi is misspelled
@@ -61,7 +61,7 @@ dirty_data$Country <- as.character(dirty_data$Country) #this is not elegant, fix
 dirty_data$Country <- ifelse(dirty_data$Country %in% as.character(comp$Country$to_fix), 
                              as.character(comp$Country$fixed), dirty_data$Country) #asuming you don't want France to be included.
 
-dirty_data$Locality <- as.character(dirty_data$Locality) #this is not elegant.s
+dirty_data$Locality <- as.character(dirty_data$Locality) #this is not elegant.
 dirty_data$Locality <- ifelse(dirty_data$Locality ==
                                 as.character(comp$Locality$to_fix),
                               as.character(comp$Locality$fixed), dirty_data$Locality)
@@ -77,14 +77,14 @@ dirty_data <- add_missing_variables(check, dirty_data)
 #recheck
 compare_variables(check, dirty_data)
 
-#drop_variables(check, dirty_data) I am not droping variables yet, as I'll need those.
+#drop_variables(check, dirty_data) I am not dropping variables yet, as I'll need those.
 
 ```
 
 Second, We need to convert a few variables such as Date, Lat-Longs, etc... we have some helpers for that:
 
 ```{r}
-#I never remember georeference functions, so I can ask for a tip
+#I never remember georeferencing functions, so I can ask for a tip
 help_geo()
 dirty_data$Latitude <- parzer::parse_lat(as.character(dirty_data$UTM.N))
 dirty_data$Longitude <- parzer::parse_lat(as.character(dirty_data$UTM.S))
@@ -106,8 +106,8 @@ dirty_data$Year <- 2000+temp$year
 dirty_data$Month <- temp$month
 dirty_data$Day <- temp$day
 
-#Another common task is cleaning or spliting species names with some heuristics:
-help_species() #tipical useful functions
+#Another common task is cleaning or splitting species names with some heuristics:
+help_species() #typical useful functions
 
 temp <- extract_pieces(dirty_data$Species, species = TRUE) #this may fail with more dirty data
 #in this case strsplit() may also work.
@@ -119,7 +119,7 @@ dirty_data$Genus <- temp$piece2
 dirty_data$Species <- temp$piece1
 
 #finally we check again
-compare_variables(check, dirty_data) #Note we have a year in 2029 which is not possible
+compare_variables(check, dirty_data) #Note we have a year in 2029 which is not possible (I am writing this in 2022)
 dirty_data$Year[which(dirty_data$Year > 2019)] <- 2019
 
 #Now we can drop variables
@@ -130,7 +130,7 @@ clean_data <- add_uid(newdat = clean_data, "test")
 head(clean_data)
 ```
 
-3) Finally, one always want to check species names, as misspellings and synonims are common.
+3) Finally, one always want to check species names, as misspellings and synonyms are common.
 
 ```{r}
 #create a genus species column
@@ -158,7 +158,7 @@ colnames(clean_data)[which(colnames(clean_data) == "Gen_sp")] <- "original_Gen_s
 head(clean_data)
 ```
 
-For more complex scinetific name cleaning (e.g. detecting synonyms), you can use taxize. I also made a wrapper, but this has evolved quite a lot.
+For more complex scientific name cleaning (e.g. detecting synonyms), you can use `taxize`. I also made a wrapper, but this has evolved quite a lot since I did it.
 
 
 ```{r}
