@@ -1,3 +1,14 @@
+#' check_sp
+#'
+#' @param template
+#' @param Genus
+#' @param Species
+#' @param k: number of changes allowed by the fuzzy matching function.
+#'
+#' @return
+#' @export
+#'
+#' @examples
 check_Gen_sp <- function(species_tesaurus, Gen_sp, k = 2){ #if Gen_sp, we can add an if.
   matching <- Gen_sp[which(Gen_sp %in% species_tesaurus$Gen_sp)]
   unmatching <- Gen_sp[which(!Gen_sp %in% species_tesaurus$Gen_sp)]
