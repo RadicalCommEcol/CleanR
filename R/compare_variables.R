@@ -32,6 +32,7 @@ compare_variables <- function(template, newdat, threshold = 1.5, k = 2){
   merged <- merge(template[["dat"]], newtemp, all = FALSE)
   print("Variables with unmatching classes:")
   print(merged[which(merged$classes != merged$newclasses),c(1,2,5)])
+  #Depurate integers / numeric and logicals / characters
   #variables above 1.5x max. TO BE DONE
   print("Numeric variables out of range")
   print(merged[which(merged$newmin_ < merged$min_ | merged$newmax_ > merged$max_),
@@ -44,25 +45,27 @@ compare_variables <- function(template, newdat, threshold = 1.5, k = 2){
       cats <- append(cats, temp)
     }
     cat_out <- list()
-    for(h in names(cats)){
-      sel_new <- cats[[h]]
-      sel_tem <- template$categorical[[h]]
-      to_fix <- sel_new[which(!sel_new %in% sel_tem)]
-      if(length(to_fix) > 0){
-        fixed <- c()
-        for(l in 1:length(to_fix)){
-          temp2 <- sel_tem[as.logical(adist(to_fix[l], sel_tem) <= k)]
-          if(length(temp2) == 1){
-            fixed[l] <- temp2
-          } else {
-            fixed[l] <- NA
+    if(!all(is.na(template$categorical))){
+      for(h in names(cats)){
+        sel_new <- cats[[h]]
+        sel_tem <- template$categorical[[h]]
+        to_fix <- sel_new[which(!sel_new %in% sel_tem)]
+        if(length(to_fix) > 0){
+          fixed <- c()
+          for(l in 1:length(to_fix)){
+            temp2 <- sel_tem[as.logical(adist(to_fix[l], sel_tem) <= k)]
+            if(length(temp2) == 1){
+              fixed[l] <- temp2
+            } else {
+              fixed[l] <- NA
+            }
           }
+          out <-  data.frame(to_fix, fixed)
+          cat_out[[h]] <- out
         }
-        out <-  data.frame(to_fix, fixed)
-        cat_out[[h]] <- out
-      }#else{
-      #cat_out[[h]] <- NA
-      #}
+      }
+    } else {
+      cat_out <- "No categorical variables" #CHECK THIS IS OK
     }
     cat_out
   }

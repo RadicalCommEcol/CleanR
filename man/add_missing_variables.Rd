@@ -9,9 +9,6 @@ add_missing_variables(template, newdat)
 \arguments{
 \item{newdat}{}
 }
-\value{
-
-}
 \description{
 Title
 }

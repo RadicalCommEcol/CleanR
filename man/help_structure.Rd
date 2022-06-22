@@ -6,9 +6,6 @@
 \usage{
 help_structure()
 }
-\value{
-
-}
 \description{
 help_structure
 }

@@ -2,6 +2,7 @@
 
 export(add_missing_variables)
 export(add_uid)
+export(check_Gen_sp)
 export(check_sp)
 export(clean_species)
 export(compare_variables)

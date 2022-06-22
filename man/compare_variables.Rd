@@ -11,9 +11,6 @@ compare_variables(template, newdat, threshold = 1.5, k = 2)
 
 \item{k:}{number of changes allowed by the fuzzy matching function.}
 }
-\value{
-
-}
 \description{
 compare_variables
 }

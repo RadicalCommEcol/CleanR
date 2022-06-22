@@ -24,7 +24,7 @@ Turn on the music and let's clean some dirty data.
 ```{r setup}
 library(cleanR)
 dirty_data <- read.csv("../inst/extdata/dirty_data.csv", stringsAsFactors = FALSE)
-example <- read.csv("../inst/extdata/template.csv")  
+example <- read.csv("../inst/extdata/template.csv", stringsAsFactors = TRUE)  
 species_tesaurus <- read.csv("../inst/extdata/species_tesaurus.csv", sep = ";")
 ```
 
@@ -35,12 +35,12 @@ I created a few `help_` functions to provide tips and refresh my mind on what op
 help_structure()
 
 #create template to check against
-check <- define_template(example, species_tesaurus)
+check <- define_template(example = example, species_tesaurus = species_tesaurus)
 
 #Note: Use factors only for those variables you want to compare categories.
 dirty_data$Country <- as.factor(dirty_data$Country)
 dirty_data$Locality <- as.factor(dirty_data$Locality)
-(comp <- compare_variables(check, dirty_data))
+(comp <- compare_variables(template = check, newdat = dirty_data))
 ```
 
 We observe that some variables do not match (e.g. UTM vs lat long, or Date vs Day, Month Year). We will look onto that later. In addition, some are simply misspelled (e.g. Reference..doi.). The `worker` column should be an integer, but it's a character and the `male` variable has values out of range. Finally, we need to fix some categories. All this process is quite manual because the offensive values are context dependent. Let's do that.
@@ -58,8 +58,9 @@ dirty_data$Male[which(dirty_data$Male < 0)] <- NA
 
 #Fix misspelled Country and Locality
 dirty_data$Country <- as.character(dirty_data$Country) #this is not elegant, fix.
-dirty_data$Country <- ifelse(dirty_data$Country %in% as.character(comp$Country$to_fix), 
-                             as.character(comp$Country$fixed), dirty_data$Country) #asuming you don't want France to be included.
+dirty_data$Country <- ifelse(
+  dirty_data$Country %in% as.character(comp$Country$to_fix), 
+  as.character(comp$Country$fixed), dirty_data$Country) #asuming you don't want France to be included.
 
 dirty_data$Locality <- as.character(dirty_data$Locality) #this is not elegant.
 dirty_data$Locality <- ifelse(dirty_data$Locality ==
@@ -89,12 +90,16 @@ help_geo()
 dirty_data$Latitude <- parzer::parse_lat(as.character(dirty_data$UTM.N))
 dirty_data$Longitude <- parzer::parse_lat(as.character(dirty_data$UTM.S))
 
-alternative <- mgrs::mgrs_to_latlng(as.character(dirty_data$MGRS))
+#R pacake not availabe for my R version 
+#alternative <- mgrs::mgrs_to_latlng(as.character(dirty_data$MGRS))
 #From here you can extract lat and long easily
 
 #We may also be interested in geolocating some localities 
-latlong <- geocode(unique(as.character(dirty_data$Locality)))
-latlong ; unique(paste(dirty_data$Latitude, dirty_data$Longitude)) #not bad!
+
+#COMENTED BECSUE FAILING...
+#latlong <- geocode(unique(as.character(dirty_data$Locality)))
+#latlong ; unique(paste(dirty_data$Latitude, dirty_data$Longitude)) #not bad!
+
 #From here you can extract lat and long easily
 
 #and I also often forget about Date manipulation

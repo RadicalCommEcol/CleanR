@@ -18,9 +18,6 @@ extract_pieces(
 \arguments{
 \item{single}{}
 }
-\value{
-
-}
 \description{
 extract_pieces
 }

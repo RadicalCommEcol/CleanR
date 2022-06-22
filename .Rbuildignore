@@ -5,3 +5,4 @@
 ^functions\.R$
 ^doc$
 ^Meta$
+/vignettes
