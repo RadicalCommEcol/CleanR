@@ -9,9 +9,6 @@ drop_variables(template, newdat)
 \arguments{
 \item{newdat}{}
 }
-\value{
-
-}
 \description{
 Title
 }
